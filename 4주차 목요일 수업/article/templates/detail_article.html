@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+    {{ article.content }}
+    <hr>
+    <form action="{% url 'create-comment' article.pk %}" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="title">댓글</label>
+            <input type="text" class="form-control" name='content' id="content" placeholder="댓글을 입력하세요">
+        </div>
+        <button class='btn btn-primary' type="submit">작성하기</button>
+    </form>
+    <hr>
+    <div class="comment_box">
+        {% for comment in article.comments.all %}`
+            <div>
+                {{ comment.content }} | 작성자: {{ comment.author }}
+            </div>
+        {% endfor %}
+    </div>
+{%  endblock %}

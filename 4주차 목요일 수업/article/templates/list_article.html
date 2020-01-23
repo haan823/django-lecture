@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div>
+        <ul class="list-group">
+            {% for article in articles %}
+                <a href="{% url 'detail-article' article.pk %}">
+                    <li class="list-group-item">{{ article.title }}</li>
+                </a>
+            {% endfor %}
+        </ul>
+    </div>
+    <br>
+    <a class="btn btn-primary" href="{% url 'create-article' %}">게시물 작성하기</a>
+{%  endblock %}
